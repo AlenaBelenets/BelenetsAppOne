@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "rocket-toy-plastic-child-space-ship-cute-cartoon-aircraft_80590-12540 (фон удален).png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
