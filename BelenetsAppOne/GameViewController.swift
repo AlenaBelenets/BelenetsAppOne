@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
         return label
     }()
 
-    private var userName = UserDefaults.standard.value(forKey: "userName") as? String
+    private var userName = UserDefaults.standard.value(forKey: Constants.keyName) as? String
 
      lazy var enemy1: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "enemy"))
@@ -159,6 +159,8 @@ class GameViewController: UIViewController {
 //
         animateLeftImage(UIImageView(image: UIImage(named: "sky2")))
         animateRightImage(UIImageView(image: UIImage(named: "sky")))
+
+        collisionHandler()
 
     }
 
@@ -333,15 +335,27 @@ class GameViewController: UIViewController {
 
 
     private func collisionHandler() {
-        collisionTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false, block: { _ in
-            if self.player.frame.intersects(self.enemy1.frame) || self.player.frame.intersects(self.enemy2.frame)
-                || self.player.frame.intersects(self.enemy2.frame) || self.player.frame.intersects(self.enemy3.frame) || self.player.frame.intersects(self.enemy1.frame) {
+
+        if enemy1.layer.presentation() == player.layer.presentation()  {
+
+//              layer.layer.presentation() == enemy2.layer.presentation() {
+//            if self.player.frame.intersects(self.enemy1.frame) || self.player.frame.intersects(self.enemy2.frame)
+//                || self.player.frame.intersects(self.enemy3.frame) {
                 self.isPlaying = false
                 self.gameOver()
-                self.collisionTimer.invalidate()
-//                self.showGameOverAlert()
+                //                self.collisionTimer.invalidate()
+                self.showGameOverAlert()
             }
-        })
+        }
+
+
+    private func showGameOverAlert() {
+        let alert = UIAlertController(title: "Game over", message: ":(", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Try again", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 
 
@@ -380,7 +394,7 @@ private func getCurrentDate(_ dateFormat: String) -> String {
         self.enemy2.removeFromSuperview()
         self.enemy3.removeFromSuperview()
 
-      UIView.animate(withDuration: 1) {
+      UIView.animate(withDuration: 5) {
             self.player.image = UIImage(named: "boom")
             self.player.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
             self.player.frame.origin.y = self.view.bounds.height - self.player.frame.size.height - 60
