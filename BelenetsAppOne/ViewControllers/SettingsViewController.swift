@@ -7,36 +7,38 @@
 
 import UIKit
 
+//    MARK: - SettingsViewController
 class SettingsViewController: UIViewController {
 
+    //    MARK: - Private Properties
     private let defaults = UserDefaults.standard
     private var index = 0
     private var selectedImage = Constants.airplaneThree
     private var userName = ""
     private var airplanes = [UIImage(named: Constants.airplaneThree), UIImage(named: Constants.airplaneTwo), UIImage(named: Constants.airplaneOne)]
     private var carName = [Constants.airplaneOne, Constants.airplaneTwo, Constants.airplaneThree]
-    private var level: Double = 1
+    private var levelDuration: Double = Numbers.one.rawValue
     private var levelName = Constants.easy
 
 
-    lazy var nameTextField: UITextField = {
+    private lazy var nameTextField: UITextField = {
         let textField = UITextField()
 
         textField.placeholder = " Add your name"
-        textField.layer.borderWidth = 2
+        textField.layer.borderWidth = Numbers.two.rawValue
         textField.backgroundColor = .white
-        textField.layer.cornerRadius = 15
-        textField.layer.borderColor = CGColor(red: 40, green: 32, blue: 23, alpha: 1)
+        textField.layer.cornerRadius = Numbers.twelve.rawValue
+        textField.layer.borderColor = CGColor(red: Numbers.forty.rawValue, green: Numbers.thirty.rawValue, blue: Numbers.twentyFive.rawValue, alpha: Numbers.one.rawValue)
         textField.addTarget(self, action: #selector(addedPlayerName), for: .touchUpInside)
 
 
         return textField
     }()
 
-    lazy var easyDurationLabel: UILabel = {
+    private lazy var easyDurationLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont(name: "Title 1", size: 25)
+        label.font = UIFont(name: "Title 1", size: Numbers.twentyFive.rawValue)
         label.text = "EASY"
         label.backgroundColor = .white
         label.textAlignment = .center
@@ -45,10 +47,10 @@ class SettingsViewController: UIViewController {
         return label
     }()
 
-    lazy var mediumDurationLabel: UILabel = {
+    private lazy var mediumDurationLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont(name: "Title 1", size: 25)
+        label.font = UIFont(name: "Title 1", size: Numbers.twentyFive.rawValue)
         label.text = "MEDIUM"
         label.textAlignment = .center
         label.backgroundColor = .white
@@ -56,10 +58,10 @@ class SettingsViewController: UIViewController {
 
         return label
     }()
-    lazy var hardDurationLabel: UILabel = {
+    private lazy var hardDurationLabel: UILabel = {
         let label = UILabel()
 
-        label.font = UIFont(name: "Title 1", size: 25)
+        label.font = UIFont(name: "Title 1", size: Numbers.twentyFive.rawValue)
         label.text = "HARD"
         label.textAlignment = .center
         label.backgroundColor = .white
@@ -79,27 +81,26 @@ class SettingsViewController: UIViewController {
         return button
     }()
 
-    lazy var airplaneOne: UIImageView = {
-           let imageView = UIImageView(image: UIImage(named: "airplane1"))
+    private lazy var airplaneOne: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "airplane1"))
 
-           return imageView
+        return imageView
 
-       }()
+    }()
 
-    lazy var airplaneTwo: UIImageView = {
-           let imageView = UIImageView(image: UIImage(named: "airplane2"))
-           return imageView
+    private lazy var airplaneTwo: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "airplane2"))
+        return imageView
 
-       }()
+    }()
 
-    lazy var airplaneThree: UIImageView = {
-           let imageView = UIImageView(image: UIImage(named: "airplane3"))
+    private lazy var airplaneThree: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "airplane3"))
+        return imageView
 
+    }()
 
-           return imageView
-
-       }()
-//    MARK: - ViewDidLoad
+    //    MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
@@ -114,116 +115,64 @@ class SettingsViewController: UIViewController {
 
     }
 
+    //    MARK: - Private functions
 
-    @objc func addedPlayerName() {
-        UserDefaults.standard.set(nameTextField.text, forKey: "userName")
-    }
+    private func setupTextField() {
 
-    func setupTextField() {
-
-        nameTextField.frame = CGRect(x: 300, y:200, width: 150, height: 50)
+        nameTextField.frame = CGRect(x: Numbers.threeHundred.rawValue, y: Numbers.twoHundred.rawValue, width: Numbers.oneHundredAndFifty.rawValue, height: Numbers.fifty.rawValue)
         nameTextField.center.x = CGFloat(self.view.bounds.midX)
         self.view.addSubview(nameTextField)
 
     }
 
-    func setupLabels() {
+    private func setupLabels() {
 
-        easyDurationLabel.frame = CGRect(x: 20, y:600, width: 100, height: 50)
+        easyDurationLabel.frame = CGRect(x: Numbers.twenty.rawValue, y:Numbers.sixHundred.rawValue, width: Numbers.oneHundred.rawValue, height: Numbers.fifty.rawValue)
         self.view.addSubview(easyDurationLabel)
 
-        mediumDurationLabel.frame = CGRect(x: 150, y:600, width: 100, height: 50)
+        mediumDurationLabel.frame = CGRect(x: Numbers.oneHundredAndFifty.rawValue, y:Numbers.sixHundred.rawValue, width: Numbers.oneHundred.rawValue, height: Numbers.fifty.rawValue)
         self.view.addSubview(mediumDurationLabel)
 
-        hardDurationLabel.frame = CGRect(x: 270, y:600, width: 100, height: 50)
+        hardDurationLabel.frame = CGRect(x: Numbers.twoHundredAndSeventy.rawValue, y:Numbers.sixHundred.rawValue, width: Numbers.oneHundred.rawValue, height: Numbers.fifty.rawValue)
         self.view.addSubview(hardDurationLabel)
 
     }
 
-    func setupDoneButton() {
-        doneButton.frame = CGRect(x: 150, y:700, width: 100, height: 50)
+    @objc private func addedPlayerName() {
+        UserDefaults.standard.set(nameTextField.text, forKey: "userName")
+    }
+
+    private func setupDoneButton() {
+        doneButton.frame = CGRect(x: Numbers.oneHundredAndFifty.rawValue, y:Numbers.sevenHundred.rawValue, width: Numbers.oneHundred.rawValue, height: Numbers.fifty.rawValue)
         self.view.addSubview(doneButton)
     }
 
-    @objc func doneButtonWasPressed() {
+     @objc private func doneButtonWasPressed() {
 
-        defaults.setValue(carName[index], forKey: Constants.keyAirplane)
-        defaults.setValue(level, forKey: "gameLavel")
+        defaults.setValue(selectedImage, forKey: Constants.keyAirplane)
+        defaults.setValue(levelDuration, forKey: Constants.keyDuration)
+        UserDefaults.standard.set(nameTextField.text, forKey: "userName")
         doneButton.backgroundColor = UIColor.green
+
     }
 
     private func setupAirplanes() {
-        airplaneOne.frame = CGRect(x: 300, y: 400, width: 70, height: 80)
+        airplaneOne.frame = CGRect(x: Numbers.threeHundred.rawValue, y: Numbers.fourHundred.rawValue, width: Numbers.seventy.rawValue, height: Numbers.eighty.rawValue)
 
         self.view.addSubview(airplaneOne)
 
-        airplaneTwo.frame = CGRect(x: 150, y: 380, width: 120, height: 140)
+        airplaneTwo.frame = CGRect(x: Numbers.oneHundredAndFifty.rawValue, y: Numbers.threeHundredAndEight.rawValue, width: Numbers.oneHundredAndTwenty.rawValue, height: Numbers.oneHundredAndForty.rawValue)
         self.view.addSubview(airplaneTwo)
 
-        airplaneThree.frame = CGRect(x: 50, y: 400, width: 70, height: 90)
-
-
+        airplaneThree.frame = CGRect(x: Numbers.fifty.rawValue, y: Numbers.fourHundred.rawValue, width: Numbers.seventy.rawValue, height: Numbers.ninety.rawValue)
 
         self.view.addSubview(airplaneThree)
     }
 
-//    private func setupSwipeGestureRecognizer() {
-//        let swipeGestureLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_ :)))
-//        let swipeGestureRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_ :)))
-//        swipeGestureLeft.direction = .left
-//        swipeGestureRight.direction = .right
-//        view.addGestureRecognizer(swipeGestureLeft)
-//        view.addGestureRecognizer(swipeGestureRight)
-//    }
-//
-//    @objc func handleSwipe(_ sender: UISwipeGestureRecognizer) {
-//        if sender.state == .ended {
-//            switch sender.direction {
-//            case .left:
-//                index += 1
-//                checkIndex()
-//                carImageView.transform = CGAffineTransform(translationX: 300, y: 0)
-//                carImageView.transform = carImageView.transform.rotated(by: .pi)
-//                applyAnimation()
-//                soundManager.playSound(fileName: Constants.swipeSound)
-//            case .right:
-//                index -= 1
-//                checkIndex()
-//                carImageView.transform = CGAffineTransform(translationX: -300, y: 0)
-//                carImageView.transform = carImageView.transform.rotated(by: .pi)
-//                applyAnimation()
-//                soundManager.playSound(fileName: Constants.swipeSound)
-//            default:
-//                break
-//            }
-//        }
-//    }
-
-//    private func checkIndex() {
-//        if index >= cars.count {
-//            index = 0
-//        } else if index <= -1 {
-//            index = cars.count - 1
-//        }
-//        carImageView.image = cars[index]
-//    }
-
-//    private func applyAnimation() {
-//        UIView.animate(withDuration: 1.0) {
-//            self.carImageView.transform = CGAffineTransform(rotationAngle: .pi * 2.0)
-//        } completion: { _ in
-//            UIView.animate(withDuration: 0.3) {
-//                self.carImageView.transform = CGAffineTransform.identity.scaledBy(x: 1.3, y: 1.3)
-//            }
-//        }
-//    }
-
-    // MARK: - obstacle selection methods
-    // MARK: -
     private func setupObstacleGesterRecognize() {
-        let airplaneTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fitrstimageTapped(tapGestureRecognizer:)))
-        let aiplaneTwoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(secondimageTapped(tapGestureRecognizer:)))
-        let airplaneThreeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(thirdimageTapped(tapGestureRecognizer:)))
+        let airplaneTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(firstImageTapped(tapGestureRecognizer:)))
+        let aiplaneTwoTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(secondImageTapped(tapGestureRecognizer:)))
+        let airplaneThreeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(thirdImageTapped(tapGestureRecognizer:)))
 
         airplaneOne.isUserInteractionEnabled = true
         airplaneTwo.isUserInteractionEnabled = true
@@ -234,37 +183,41 @@ class SettingsViewController: UIViewController {
         airplaneThree.addGestureRecognizer(airplaneThreeTapGestureRecognizer)
     }
 
-    @objc func fitrstimageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc private func firstImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         selectedImage = Constants.airplaneOne
+        defaults.set(selectedImage, forKey: Constants.keyAirplane)
 
-        airplaneOne.layer.cornerRadius = 25
+        airplaneOne.layer.cornerRadius = Numbers.twentyFive.rawValue
         airplaneOne.clipsToBounds = true
         airplaneOne.layer.borderColor = UIColor.darkGray.cgColor
-        airplaneOne.layer.borderWidth = 1.5
+        airplaneOne.layer.borderWidth = Numbers.onePointFive.rawValue
 
         resetImageViewSettings(imageView: airplaneTwo)
         resetImageViewSettings(imageView: airplaneThree)
     }
 
-    @objc func secondimageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc private func secondImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         selectedImage = Constants.airplaneTwo
+        defaults.set(selectedImage, forKey: Constants.keyAirplane)
 
-        airplaneTwo.layer.cornerRadius = 25
+        airplaneTwo.layer.cornerRadius = Numbers.twentyFive.rawValue
         airplaneTwo.clipsToBounds = true
         airplaneTwo.layer.borderColor = UIColor.darkGray.cgColor
-        airplaneTwo.layer.borderWidth = 1.5
+        airplaneTwo.layer.borderWidth = Numbers.onePointFive.rawValue
 
         resetImageViewSettings(imageView: airplaneOne)
         resetImageViewSettings(imageView: airplaneThree)
     }
 
-    @objc func thirdimageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc func thirdImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         selectedImage = Constants.airplaneThree
 
-        airplaneThree.layer.cornerRadius = 25
+        defaults.set(selectedImage, forKey: Constants.keyAirplane)
+
+        airplaneThree.layer.cornerRadius = Numbers.twentyFive.rawValue
         airplaneThree.clipsToBounds = true
         airplaneThree.layer.borderColor = UIColor.darkGray.cgColor
-        airplaneThree.layer.borderWidth = 1.5
+        airplaneThree.layer.borderWidth = Numbers.onePointFive.rawValue
 
         resetImageViewSettings(imageView: airplaneOne)
         resetImageViewSettings(imageView: airplaneTwo)
@@ -275,8 +228,6 @@ class SettingsViewController: UIViewController {
         doneButton.backgroundColor = UIColor(named: "green")
     }
 
-    // MARK: - level selection methods
-    // MARK: -
     private func setupLabelGesterRecognize() {
         let easyLabelTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(easyLabelTapped(tapGestureRecognizer:)))
         let mediumLabelGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(mediumLabelTapped(tapGestureRecognizer:)))
@@ -292,10 +243,8 @@ class SettingsViewController: UIViewController {
     }
 
     @objc private func easyLabelTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        level = 1
+        levelDuration = Numbers.seven.rawValue
         levelName = Constants.easy
-
-        defaults.set(level, forKey: Constants.keyDuration)
 
         easyDurationLabel.backgroundColor = .darkGray
         easyDurationLabel.textColor = .white
@@ -305,10 +254,8 @@ class SettingsViewController: UIViewController {
     }
 
     @objc private func mediumLabelTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        level = 5
+        levelDuration = Numbers.five.rawValue
         levelName = Constants.medium
-
-        defaults.set(level, forKey: Constants.keyDuration)
 
         mediumDurationLabel.backgroundColor = .darkGray
         mediumDurationLabel.textColor = .white
@@ -318,11 +265,11 @@ class SettingsViewController: UIViewController {
     }
 
     @objc private func hardLabelTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        level = 10
+        levelDuration = Numbers.two.rawValue
         levelName = Constants.hard
 
-        defaults.set(level, forKey: Constants.keyDuration)
-        
+        defaults.set(levelDuration, forKey: Constants.keyDuration)
+
         hardDurationLabel.backgroundColor = .darkGray
         hardDurationLabel.textColor = .white
 
@@ -337,8 +284,8 @@ class SettingsViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate methods
-// MARK: -
+// MARK: - Extension UITextFieldDelegate
+
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let name = textField.text {

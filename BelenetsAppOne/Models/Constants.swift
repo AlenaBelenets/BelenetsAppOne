@@ -24,7 +24,7 @@ enum Constants {
     // MARK: - Settings screen strings
     static let selectButtonTitle = "Done"
     static let userNameTextFieldPlaceholder = "Add your name"
-    static let settingsDurationItemTitle = "Choose duration"
+    static let settingsDurationItemTitle = 5
     static let defaultUserName = "Player"
 
     // MARK: - Race screen strings
